@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{% url "book:index" %}"><img src="../static/deps/images/logo.svg" alt=""
+                    style="width: 100px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: white;" aria-current="page" href="{% url "book:index" %}">Главная</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav flex-grow-2 mx-auto mb-2 mb-lg-0 search">
+                    <li>
+                        <form class="d-flex flex-nowrap" role="search">
+                            <input class="form-control me-0 form-search" type="search" placeholder="Найти" aria-label="Search">
+                            <button class="btn btn-light btn-search" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="25" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% comment %} Кнопки {% endcomment %}
+                    {% comment %} {% if not user.authenticated  %}                         {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:login" %}">Вход</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:registration" %}">Регистрация</a>
+                        </li>
+                    {% comment %} {% else %} {% endcomment %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:profile" %}">Мой профиль</a>
+                        </li>
+                    {% comment %} {% endif %} {% endcomment %}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+{% endblock header %}
+
+{% block content %}
+<form class="form" method="post" action="{% url "book:feedback" %}" >
+	{% csrf_token %}
+	<div class="form__item">
+		<input class="form__input" type="text" name="first_name" value="{{user.first_name}}" required>
+		<label class="form__label">Ваше имя</label>
+	</div>
+
+	<div class="form__item">
+		<input class="form__input" type="email" name="email" value = "{{user.email}}" required>
+		<label class="form__label">Email</label>
+	</div>
+
+    <div class="form__item">
+		<input class="form__input" type="text" name="comments" required>
+		<label class="form__label">Ваш комментарий</label>
+	</div>
+
+	<input class="form__input btn_1" type="submit" value="Отправить">
+	<input type="hidden" name="act" value="order">
+
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock content %}

@@ -1,0 +1,101 @@
+[
+    {
+        "model": "book.author",
+        "pk": 1,
+        "fields": {
+            "surname": "Кожухов",
+            "name": "Игорь",
+            "patronymic": "Борисович"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 2,
+        "fields": {
+            "surname": "Соколова",
+            "name": "Татьяна",
+            "patronymic": "Владимировна"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 3,
+        "fields": {
+            "surname": "Гагарина",
+            "name": "Лариса",
+            "patronymic": "Геннадьевна"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 4,
+        "fields": {
+            "surname": "Кононова",
+            "name": "Александра",
+            "patronymic": "Игоревна"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 5,
+        "fields": {
+            "surname": "Орловская",
+            "name": "Ирина",
+            "patronymic": "Валерьевна"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 6,
+        "fields": {
+            "surname": "Гусев",
+            "name": "Валерий",
+            "patronymic": "Александрович"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 7,
+        "fields": {
+            "surname": "Прокофьев",
+            "name": "Александр",
+            "patronymic": "Александрович"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 8,
+        "fields": {
+            "surname": "Слюсарь",
+            "name": "Валентин",
+            "patronymic": "Викторович"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 9,
+        "fields": {
+            "surname": "Лупин",
+            "name": "Сергей",
+            "patronymic": "Сергеевич"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 10,
+        "fields": {
+            "surname": "Посыпкин",
+            "name": "Михаил",
+            "patronymic": "Анатольевич"
+        }
+    },
+    {
+        "model": "book.author",
+        "pk": 11,
+        "fields": {
+            "surname": "Ефимов",
+            "name": "Александр",
+            "patronymic": "Васильевич"
+        }
+    }
+]

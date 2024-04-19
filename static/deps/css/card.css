@@ -1,0 +1,11 @@
+.card{
+    margin-left: 2em;
+    border: solid;
+    border-color:blueviolet;
+    display: inline;
+    
+}
+
+p{
+    font-size: 5em;
+}

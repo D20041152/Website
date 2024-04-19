@@ -1,0 +1,75 @@
+.book-profile{
+    margin-top: 107px;
+    margin-left: 105px;
+    display: flex; 
+    width: 1679px;
+    height: 711px;
+}
+
+.book-cover, .book-info {
+    flex: 1;
+}
+
+.book-info h1{
+    font-weight: 700;
+    font-size: 48px;
+    text-align: center;
+    color: #000;
+}
+
+.book-info p{
+    font-weight: 300;
+    font-size: 20px;
+    color: #000;
+}
+
+.book-info label {
+    font-weight: 800;
+    font-size: 20px;
+    color: #000;
+}
+
+.book-info .labelDate {
+    font-weight: 300;
+    font-size: 20px;
+    color: #000;
+}
+
+.block {
+    margin-bottom: 89px; /* Расстояние между блоками */
+}
+
+.fstblock {
+    margin-top: 107px; /* Расстояние между блоками */
+    margin-bottom: 89px; /* Расстояние между блоками */
+}
+
+.blocklst {
+    margin-top: 89px; /* Расстояние между блоками */
+    margin-bottom: -160px; /* Расстояние между блоками */
+}
+
+
+.btn_3 {
+    height: 100px; 
+    width: 512px; 
+    border-radius: 11px;
+    background-color: #21a0d6b5;
+    border: none;
+    color: #fff; 
+    font-size: 32px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+.btn_3:hover {
+    background-color: #1a84b8b5;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 50%;
+}
