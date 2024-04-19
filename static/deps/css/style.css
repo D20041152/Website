@@ -121,3 +121,10 @@ a{
 .card img{
     height: 25rem;
 }
+
+.errorlist.nonfield {
+    color: rgb(200, 25, 25);
+    font-weight: bold;
+    list-style-type: none;
+}
+

@@ -8,27 +8,6 @@ from django.contrib.auth.decorators import login_required
 from users.models import User
 
 
-def login(request):
-    if request.method == "POST":
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-            user = auth.authenticate(username=username, password=password)
-            if user:
-                auth.login(request, user)
-                messages.success(request, f"{username}, Вы вошли в аккаунт")
-                return HttpResponseRedirect(reverse("book:index"))
-    else:
-        form = UserLoginForm()
-    context = {
-        "title": "Home - Авторизация",
-        "form": form,
-
-    }
-
-    return render(request, 'users/login.html', context)
-
 def registration(request):
     if request.method == "POST":
         form = UserRegistrationForm(data=request.POST)

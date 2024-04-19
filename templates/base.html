@@ -11,8 +11,6 @@
     {% block css %}
     
     {% endblock css %}
-
-
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
@@ -22,9 +20,19 @@
     {% endblock header %}
     <section>
         <div class="container-fluid mt-4">
-            {% include "includes/notifications.html" %}
+
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">
+                            {{ message|safe }}
+                            <a href="#" class="close">x</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
             {% block content %}
-            
             {% endblock content %}
         </div>
 
