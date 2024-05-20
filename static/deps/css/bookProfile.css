@@ -1,81 +1,155 @@
-.book-profile{
-    margin-top: 107px;
-    margin-left: 105px;
-    display: flex; 
-    width: 1679px;
-    height: 711px;
+body {
+    /--font-family: Arial, sans-serif;--/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
 }
 
-.book-cover, .book-info {
+.book-profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2em;
+    gap: 2em;
+    background-color: #fff;
+    margin: 50px auto;
+    max-width: 1500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.book-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.book-image {
     flex: 1;
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.book-info h1{
-    font-weight: 700;
-    font-size: 48px;
-    text-align: center;
-    color: #000;
+
+.book-info-section{
+    flex: 2;
+    flex-direction: column;
+    border-radius: 10px;
 }
 
-.book-info p{
-    font-weight: 300;
-    font-size: 20px;
-    color: #000;
+
+.book-info {
+    padding: 1em;
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+
+.book-info h1 {
+    font-weight: bold;
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    color: #333;
+    align-content: center;
 }
 
 .book-info label {
-    font-weight: 800;
-    font-size: 20px;
-    color: #000;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #555;
 }
 
-.book-info .labelDate {
-    font-weight: 300;
-    font-size: 20px;
-    color: #000;
+.book-info p {
+    font-size: 1.1em;
+    margin: 0.5em 0 1em;
+    color: #666;
 }
 
-.block {
-    margin-bottom: 89px; /* Расстояние между блоками */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
 }
-
-.fstblock {
-    margin-top: 107px; /* Расстояние между блоками */
-    margin-bottom: 89px; /* Расстояние между блоками */
-}
-
-.blocklst {
-    margin-top: 89px; /* Расстояние между блоками */
-    margin-bottom: -160px; /* Расстояние между блоками */
-}
-
 
 .btn_3 {
-    height: 100px; 
-    width: 512px; 
+    margin: 30px;
+    height: 50px;
+    padding: 0 2em;
     border-radius: 11px;
     background-color: #21a0d6b5;
     border: none;
-    color: #fff; 
-    font-size: 32px; 
+    color: #fff;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn_3:hover {
     background-color: #1a84b8b5;
 }
 
+.like-container {
+    margin-top: 90px;
+    padding-left: 42%;
+    align-items: center;
+}
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    height: 50%;
+.like-container img {
+    cursor: pointer;
+}
+
+.like-container .count {
+    margin-left: 0.5em;
+    font-size: 1em;
+    color: #555;
 }
 
 
-.comment-form{
-    border: #000;
-    border-radius: 11px;
+
+
+@media (max-width: 900px) {
+    .book-profile {
+        max-width: 850px;
+        flex-direction: column;
+        align-items: left;
+        padding: 1em;
+    }
+
+    .book-image, .book-info-section {
+        padding-left: 3em;
+        width: 50%;
+        max-width: none;
+    }
+    
+
+    .book-info h1 {
+        font-size: 2em;
+        text-align: center;
+    }
+
+    .book-info p, .book-info label {
+        text-align: center;
+    }
+
+    .button-container {
+        margin-top: 1em;
+    }
+
+    .btn_3 {
+        width: 100%;
+        max-width: 300px;
+    }
+    .like-container {
+        margin-top: 10px;
+        padding-left: 38%;
+        align-items: center;
+    }
+    
+
 }

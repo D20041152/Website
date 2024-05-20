@@ -1,32 +1,167 @@
-
-
-
 {% extends "base.html" %}
 {% load static %}
 {% load author_tags %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static "deps/css/bookProfile.css" %}" />
-<link rel="stylesheet" href="{% static "deps/css/all.css" %}"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="{% static 'deps/css/bookProfile.css' %}"/>
 
 <style>
+    body {
+        /--font-family: Arial, sans-serif;--/
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f4f4f9;
+    }
 
-.like .like-button{
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: 2px solid rgba(0, 0, 0, 0.4);
-    outline: none;
-    font-size: 16px;
-    color: black;
-    border-radius: 11px;
-    padding-left: 11px;
+    .book-profile {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2em;
+        gap: 2em;
+        background-color: #fff;
+        margin: 50px auto;
+        max-width: 1500px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .book-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .book-image {
+        flex: 1;
+        max-width: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+
+    .book-info-section{
+        flex: 2;
+        flex-direction: column;
+        border-radius: 10px;
+    }
+
+
+    .book-info {
+        padding: 1em;
+        background-color: #fafafa;
+        border-radius: 10px;
+    }
+
+    .book-info h1 {
+        font-weight: bold;
+        font-size: 2.5em;
+        margin-bottom: 1em;
+        color: #333;
+        align-content: center;
+    }
+
+    .book-info label {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .book-info p {
+        font-size: 1.1em;
+        margin: 0.5em 0 1em;
+        color: #666;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2em;
+    }
+
+    .btn_3 {
+        margin: 30px;
+        height: 50px;
+        padding: 0 2em;
+        border-radius: 11px;
+        background-color: #21a0d6b5;
+        border: none;
+        color: #fff;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn_3:hover {
+        background-color: #1a84b8b5;
+    }
+
+    .like-container {
+        margin-top: 90px;
+        padding-left: 42%;
+        align-items: center;
+    }
+
+    .like-container img {
+        cursor: pointer;
+    }
+
+    .like-container .count {
+        margin-left: 0.5em;
+        font-size: 1em;
+        color: #555;
+    }
+    
 
     
-}
+    
+    @media (max-width: 900px) {
+        .book-profile {
+            max-width: 850px;
+            flex-direction: column;
+            align-items: left;
+            padding: 1em;
+        }
 
-</style>
+        .book-image, .book-info-section {
+            padding-left: 3em;
+            width: 50%;
+            max-width: none;
+        }
+        
+
+        .book-info h1 {
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .book-info p, .book-info label {
+            text-align: center;
+        }
+
+        .button-container {
+            margin-top: 1em;
+        }
+
+        .btn_3 {
+            width: 100%;
+            max-width: 300px;
+        }
+        .like-container {
+            margin-top: 10px;
+            padding-left: 38%;
+            align-items: center;
+        }
+        
+
+    }
+</style>   
 {% endblock css %}
 
 {% block title %}
@@ -121,40 +256,46 @@ Book profile
 {% block content %}
 
     <div class="book-profile">
-        <div class="book-info">
+        <div class="book-image">
             <img src={{  book.image.url  }} alt="Обложка книги">
-        </div></div>
-        <div class="book-info">
-            <h1>{{book.title}}</h1>
-            <div class="fstblock">
-                <label for="Автор" class="label">Автор:</label>
-                <p>{% author book.author.all %}</p>
+        </div>
+        <div class="book-info-section">
+            <div class="book-info">
+                <h1>{{book.title}}</h1>
+                <div class="first-block">
+                    <label for="Автор" class="label">Автор:</label>
+                    <p>{% author book.author.all %}</p>
+                </div>
+    
+                <div class="second-block">
+                    <label for="Дисциплина" class="label">Наименование дисциплины:</label>
+                    <p>{{book.title}}</p>
+                </div>
+    
+                <div class="button-container"><button type="submit" class="btn_3"><a href="https://drive.google.com/file/d/1q5u2R1sts_3LQZ6vhko6XE2-iix-Ll42/view">Читать</a></button></div>
+            
             </div>
-            <div class="block">
-                <label for="Дисциплина" class="label">Наименование дисциплины:</label>
-                <p>{{book.title}}</p>
+
+            <div class="like-container">
+                <a href="#" class="like" data-id="{{ book.id }}" data-action="{% if is_liked %}unlike{% else %}like{% endif %}">
+                    {% if is_liked %}
+                        <img src="{% static 'deps/images/Like.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
+                    {% else %}
+                        <img src="{% static 'deps/images/Unlike.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
+                    {% endif %}
+                </a>
+                <span class="count"><span class="total">{{ book.likes.count }}</span> Likes</span>
             </div>
-        <div class="button-container"><button type="submit" class="btn_3"><a href="https://drive.google.com/file/d/1q5u2R1sts_3LQZ6vhko6XE2-iix-Ll42/view">Читать</a></button></div>
-        
-
-
-        <div>
-            <a href="#" class="like" data-id="{{ book.id }}" data-action="{% if request.user in book.likes %}unlike{% else %}like{% endif %}">
-                {% if request.user in book.likes %}
-                    <img src="{% static 'deps/images/Like.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
-                {% else %}
-                    <img src="{% static 'deps/images/Unlike.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
-                {% endif %}
-                
-            </a>
-            <span class="count"><span class="total">{{ book.likes.count }}</span> Likes</span>
             
         </div>
         
-        
+
+
 
     </div>
 
+    
+    
     <script>
         function getCookie(name) {
             let cookieValue = null;
