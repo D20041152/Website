@@ -1,111 +1,142 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgba(210, 210, 212, 0.429);
+
+}
+
+.container{
+  width: 500px;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 11px;
+  padding: 30px 40px;
+  border: 3.5px solid rgba(66, 65, 65, 0.2);
+   
+}
+
+
+.container h1{
+  text-align: center;
+  font-size: 36px;
+}
+
+.container .form-group{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 38px 0;
+}
+
+
+.container .form-group label{
+  display: block;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.form-group input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(0,0,0, .2);
+  border-radius: 11px;
+  font-size: 16px;
+  color: #000;
+  padding: 20px 45px 20px 20px;
+}
+
+.form-group input::placeholder{
+
+  color: black;
   
-  body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: rgba(210, 210, 212, 0.429);
-  }
-  
-  .container{
-    width: 500px;
-    background-color: whitesmoke;
-    color: black;
-    border-radius: 50px;
-    padding: 30px 40px;
-    border: 3.5px solid rgba(66, 65, 65, 0.2);
-     
-  }
+}
 
 
-  .container h1{
-    text-align: center;
-    font-size: 36px;
-  }
+.form-group input:focus {
+  outline: 0;
+}
 
-  .container .form-group{
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
-  }
+.form-group.error input{
+  border-color: #ff3860;
+}
 
-  .form-group input{
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    border: 2px solid rgba(0,0,0, .2);
-    border-radius: 40px;
-    font-size: 16px;
-    color: #000;
-    padding: 20px 45px 20px 20px;
-  }
+.form-group .error{
+  display: block;
+  color:#ff3860;
+  font-size: 10px;
+  height: 13px;
+  margin-top: 3px;
+  margin-left: 2px;
+}
 
-  .form-group input::placeholder{
+.form-group.success input{
+  border-color: rgb(5, 54, 176);
+}
 
-    color: black;
-    
-  }
 
-  .container .remember-forgot{
-    display: flex;
-    justify-content: space-between;
-    font-size: 14.5px;
-    margin: -10px 0px 15px;
-  }
+.container .remember-forgot{
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -10px 0px 15px;
+  padding-top: 10px;
+}
 
-  .remember-forgot label input{
-    accent-color: rgb(5, 54, 176);
-    margin-right: 3px;
-  }
+.remember-forgot label input{
+  accent-color: rgb(5, 54, 176);
+  margin-right: 3px;
+}
 
-  .remember-forgot a{
-    color: #000;
-    text-decoration: none;
-  }
-  
-  .remember-forgot a:hover{
-    text-decoration: underline;
-  }
+.remember-forgot a{
+  color: #000;
+  text-decoration: none;
+}
 
-  .container .btn {
-    width: 40%;
-    height: 45px;
-    margin: auto;
-    display: block;
-    background-color: rgb(5, 54, 176);
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0, .1);
-    font-size: 16px;
-    color: rgb(243, 237, 230);
-    font-weight: 600;
-  }
+.remember-forgot a:hover{
+  text-decoration: underline;
+}
 
-  .container .registration{
-    font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px
-  }
+.container .btn {
+  width: 40%;
+  height: 45px;
+  margin: auto;
+  display: block;
+  background-color: rgb(5, 54, 176);
+  border: none;
+  outline: none;
+  border-radius: 11px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0, .1);
+  font-size: 16px;
+  color: rgb(243, 237, 230);
+  font-weight: 600;
+}
 
-  .registration p a {
-    color: black;
-    text-decoration: none;
-    font-weight: 600;
-  }
+.container .registration{
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px
+}
 
-  .registration p a:hover{
-    text-decoration: underline;
+.registration p a {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
 
-  }
+.registration p a:hover{
+  text-decoration: underline;
 
-  
+}

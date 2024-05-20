@@ -37,8 +37,13 @@
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% comment %} Кнопки {% endcomment %}
-                    {% comment %} {% if not user.authenticated  %}                         {% endcomment %}
+                    {% if request.user.is_authenticated %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:profile" %}">Мой профиль</a>
+                        </li>
+
+                    {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "user:login" %}">Вход</a>
                         </li>
@@ -46,18 +51,31 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "user:registration" %}">Регистрация</a>
                         </li>
-                    {% comment %} {% else %} {% endcomment %}
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "user:profile" %}">Мой профиль</a>
-                        </li>
-                    {% comment %} {% endif %} {% endcomment %}
+                    {% endif %}
                 </ul>
 
             </div>
         </div>
     </nav>
+
+    <!-- Поиск для мобильных устройств -->
+    <ul class="navbar-nav flex-fill mx-auto mb-2 mb-lg-0 search-mobile">
+        <li>
+            <form class="d-flex flex-nowrap" role="search">
+                <input class="form-control me-0 form-search" type="search" placeholder="Найти" aria-label="Search">
+                <button class="btn btn-light btn-search" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="25" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </button>
+            </form>
+        </li>
+    </ul>
 </header>
+
+
 {% endblock header %}
 
 {% block content %}

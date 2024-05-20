@@ -1,66 +1,114 @@
+
+
+
 {% extends "base.html" %}
 {% load static %}
 {% load author_tags %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static "deps/css/bookProfile.css" %}" />
+<link rel="stylesheet" href="{% static "deps/css/all.css" %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+
+.like .like-button{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    outline: none;
+    font-size: 16px;
+    color: black;
+    border-radius: 11px;
+    padding-left: 11px;
+
+    
+}
+
+</style>
 {% endblock css %}
 
 {% block title %}
-<title>Book profile</title>
+Book profile
 {% endblock title %}
 
 {% block header %}
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img src="static/images/Group 1321316136.svg" alt=""
-                style="width: 100px;"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
 
-                <li class="nav-item">
-                    <a class="nav-link active" style="color: white;" aria-current="page" href="index.html">Главная</a>
-                </li>
-            </ul>
+            <a class="navbar-brand" href="{% url "book:index" %}"><img src="../static/deps/images/logo.svg" alt=""
+                    style="width: 100px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <ul class="navbar-nav flex-grow-2 mx-auto mb-2 mb-lg-0 search">
-                <li>
-                    <form class="d-flex flex-nowrap" role="search">
-                        <input class="form-control me-0 form-search" type="search" placeholder="Найти" aria-label="Search">
-                        <button class="btn btn-light btn-search" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="25" fill="currentColor"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg>
-                        </button>
-                    </form>
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: white;" aria-current="page" href="{% url "book:index" %}">Главная</a>
+                    </li>
+                </ul>
 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Вход</a>
-                </li>
+                <ul class="navbar-nav flex-grow-2 mx-auto mb-2 mb-lg-0 search">
+                    <li>
+                        <form class="d-flex flex-nowrap" role="search">
+                            <input class="form-control me-0 form-search" type="search" placeholder="Найти" aria-label="Search">
+                            <button class="btn btn-light btn-search" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="25" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="registration.html">Регистрация</a>
-                </li>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if request.user.is_authenticated %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">Мой профиль</a>
-                </li>
-            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:profile" %}">Мой профиль</a>
+                        </li>
 
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:login" %}">Вход</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user:registration" %}">Регистрация</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
         </div>
-    </div>
     </nav>
-{% endblock header %} 
+
+    <!-- Поиск для мобильных устройств -->
+    <ul class="navbar-nav flex-fill mx-auto mb-2 mb-lg-0 search-mobile">
+        <li>
+            <form class="d-flex flex-nowrap" role="search">
+                <input class="form-control me-0 form-search" type="search" placeholder="Найти" aria-label="Search">
+                <button class="btn btn-light btn-search" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="25" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </button>
+            </form>
+        </li>
+    </ul>
+</header>
+
+
+{% endblock header %}
 <!--<div class="bookProfile">
     <div class="pic">
         <img src="#" alt="">
@@ -75,7 +123,7 @@
     <div class="book-profile">
         <div class="book-info">
             <img src={{  book.image.url  }} alt="Обложка книги">
-        </div>
+        </div></div>
         <div class="book-info">
             <h1>{{book.title}}</h1>
             <div class="fstblock">
@@ -86,11 +134,105 @@
                 <label for="Дисциплина" class="label">Наименование дисциплины:</label>
                 <p>{{book.title}}</p>
             </div>
-            <div class="button-container"><button type="submit" class="btn_3"><a href="https://drive.google.com/file/d/1q5u2R1sts_3LQZ6vhko6XE2-iix-Ll42/view">Читать</a></button></div>
+        <div class="button-container"><button type="submit" class="btn_3"><a href="https://drive.google.com/file/d/1q5u2R1sts_3LQZ6vhko6XE2-iix-Ll42/view">Читать</a></button></div>
+        
+
+
+        <div>
+            <a href="#" class="like" data-id="{{ book.id }}" data-action="{% if request.user in book.likes %}unlike{% else %}like{% endif %}">
+                {% if request.user in book.likes %}
+                    <img src="{% static 'deps/images/Like.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
+                    liked
+                {% else %}
+                    <img src="{% static 'deps/images/Unlike.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
+                    Не лайкнуто
+                {% endif %}
+                
+                {% if user in book.likes %}Unlike{% else %}Like{% endif %}
+            </a>
+            <span class="count"><span class="total">{{ book.likes.count }}</span> Likes</span>
+            
         </div>
+        
+        
+
     </div>
 
- {% endblock  %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var t = "{{ lis }}";
+        if (t.length !== 0){
+            console.log("Лайкнуто ли: ", t);
+        }
+        else{
+            console.log("0")
+        }
+
+        
+        const csrftoken = getCookie('csrftoken');
+    
+        const url = "{% url 'book:like_dislike' %}";
+        var options = {
+            method: "POST",
+            headers: {"X-CSRFToken": csrftoken},
+            mode: "same-origin"
+        }
+    
+        document.querySelector("a.like").addEventListener("click", function(e){
+            e.preventDefault();
+            var t = "{{ lis }}";
+            if (t.length !== 0){
+                console.log("Лайкнуто ли: ", t);
+            }
+            else{
+                console.log("0")
+            }
+            var likeButton = this;
+    
+            var formData = new FormData();
+            formData.append("id", likeButton.dataset.id);
+            formData.append("action", likeButton.dataset.action);
+            options["body"] = formData;
+    
+            fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                if (data["status"] === "ok")
+                {
+                    var previousAction = likeButton.dataset.action;
+                    var action = previousAction === "like" ? "unlike" : "like";
+                    likeButton.dataset.action = action;
+    
+                    var likeImage = likeButton.querySelector('img');
+                    likeImage.src = action === "like" ? "{% static 'deps/images/Unlike.png' %}" : "{% static 'deps/images/Like.png' %}";
+                    likeImage.alt = action.charAt(0).toUpperCase() + action.slice(1);
+    
+                    likeButton.innerHTML = '';
+                    likeButton.appendChild(likeImage);
+                    //likeButton.append(action.charAt(0).toUpperCase() + action.slice(1));
+    
+                    var likeCount = document.querySelector("span.count .total");
+                    likeCount.innerHTML = data.total_likes;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+    
+    
+
+
+{% endblock content %}

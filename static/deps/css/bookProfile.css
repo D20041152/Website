@@ -73,3 +73,9 @@
     align-items: center; 
     height: 50%;
 }
+
+
+.comment-form{
+    border: #000;
+    border-radius: 11px;
+}

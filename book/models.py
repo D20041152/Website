@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from users.models import User
+from django.conf import settings
 
 class Author(models.Model):
     surname = models.CharField(max_length=80, verbose_name="Фамилия")
@@ -23,6 +25,7 @@ class Book(models.Model):
     author = models.ManyToManyField(to=Author, verbose_name="Автор", related_name="books")
     image = models.ImageField(upload_to="books_images", blank=True, null=True, verbose_name="Изображение")
     created = models.DateTimeField(auto_now_add=True)
+    likes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
 
     class Meta:
         ordering=["title"]
@@ -36,4 +39,11 @@ class Book(models.Model):
         return reverse("book:book_detail", args=[
             self.slug,
         ])
-    
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'book')
