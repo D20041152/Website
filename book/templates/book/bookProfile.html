@@ -142,13 +142,10 @@ Book profile
             <a href="#" class="like" data-id="{{ book.id }}" data-action="{% if request.user in book.likes %}unlike{% else %}like{% endif %}">
                 {% if request.user in book.likes %}
                     <img src="{% static 'deps/images/Like.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
-                    liked
                 {% else %}
                     <img src="{% static 'deps/images/Unlike.png' %}" alt="{% if user in book.like_set.all %}Unlike{% else %}Like{% endif %}">
-                    Не лайкнуто
                 {% endif %}
                 
-                {% if user in book.likes %}Unlike{% else %}Like{% endif %}
             </a>
             <span class="count"><span class="total">{{ book.likes.count }}</span> Likes</span>
             
