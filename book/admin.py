@@ -13,5 +13,5 @@ class BookAdmin(admin.ModelAdmin):
     search_fields =["title", "id"]
     prepopulated_fields = {"slug": ("title",)}
     raw_id_fields = ("author",)
-    ordering = ["title", "author"]
+    ordering = ["title"]
 

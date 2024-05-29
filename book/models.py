@@ -22,10 +22,11 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=150, verbose_name="Название")
     slug = models.SlugField(max_length=150, unique_for_date="created")
-    author = models.ManyToManyField(to=Author, verbose_name="Автор", related_name="books")
+    author = models.ManyToManyField(to=Author, verbose_name="Автор", related_name="books", symmetrical=False)
     image = models.ImageField(upload_to="books_images", blank=True, null=True, verbose_name="Изображение")
     created = models.DateTimeField(auto_now_add=True)
     likes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
+    url = models.URLField(blank=True, null=True, default="  ")
 
     class Meta:
         ordering=["title"]

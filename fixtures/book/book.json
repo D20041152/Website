@@ -1,1 +1,144 @@
-[{"model": "book.book", "pk": 3, "fields": {"title": "Архитектура вычислительных систем и Ассемблер", "slug": "arhitektura-vychislitelnyh-sistem-i-assembler", "image": "books_images/accembler_iOxJqzR.png", "created": "2024-04-07T17:24:35.636Z", "author": [3, 4]}}, {"model": "book.book", "pk": 4, "fields": {"title": "Английский язык", "slug": "anglijskij-yazyk", "image": "books_images/English_lV0yHb7.jpg", "created": "2024-04-07T17:25:02.623Z", "author": [5]}}, {"model": "book.book", "pk": 5, "fields": {"title": "Геометрия", "slug": "geometriya", "image": "books_images/geometry_iftVT8y.jpg", "created": "2024-04-07T17:25:36.776Z", "author": [6, 1, 7]}}, {"model": "book.book", "pk": 6, "fields": {"title": "Основы инфомрационных технологий", "slug": "osnovy-infomracionnyh-tehnologij", "image": "books_images/inform_q4Dkqs4.webp", "created": "2024-04-07T17:58:26.372Z", "author": [3, 8]}}, {"model": "book.book", "pk": 7, "fields": {"title": "Математика 10-11 класс", "slug": "matematika-10-11-klass", "image": "books_images/math_10-11.jpg", "created": "2024-04-07T17:59:08.092Z", "author": [6, 1, 7]}}, {"model": "book.book", "pk": 8, "fields": {"title": "Сборник задач для втузов", "slug": "sbornik-zadach-dlya-vtuzov", "image": "books_images/math_pL9WMCg.jpg", "created": "2024-04-07T18:00:19.630Z", "author": [11]}}, {"model": "book.book", "pk": 9, "fields": {"title": "Конструктор Программного обеспечения", "slug": "konstruktor-programmnogo-obespecheniya", "image": "books_images/Po_06YEE7n.jpg", "created": "2024-04-07T18:00:46.122Z", "author": [3, 4]}}, {"model": "book.book", "pk": 10, "fields": {"title": "Технология параллельного программирования", "slug": "tehnologiya-parallelnogo-programmirovaniya", "image": "books_images/proga_Fxy3kCx.jpg", "created": "2024-04-07T18:01:09.539Z", "author": [9, 10]}}]
+[
+    {
+        "model": "book.book",
+        "pk": 2,
+        "fields": {
+            "title": "Архитектура вычислительных систем и Ассемблер",
+            "slug": "arhitektura-vychislitelnyh-sistem-i-assembler",
+            "image": "books_images/accembler_iOxJqzR.png",
+            "created": "2024-05-24T08:28:03.317Z",
+            "url": "https://drive.google.com/file/d/1q5u2R1sts_3LQZ6vhko6XE2-iix-Ll42/view",
+            "author": [
+                3,
+                6
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 3,
+        "fields": {
+            "title": "Английский язык",
+            "slug": "anglijskij-yazyk",
+            "image": "books_images/English_lV0yHb7.jpg",
+            "created": "2024-05-24T08:47:14.830Z",
+            "url": "https://drive.google.com/file/d/1RyB8d4A92StwMNSIfqtr9d_FjbDlcynd/view?usp=drive_link",
+            "author": [
+                5
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 4,
+        "fields": {
+            "title": "Геометрия",
+            "slug": "geometriya",
+            "image": "books_images/geometry_iftVT8y.jpg",
+            "created": "2024-05-24T08:51:28.530Z",
+            "url": "https://drive.google.com/file/d/1f82gTu85T0TVmfq657vNldb6ixrTZGP3/view?usp=sharing",
+            "author": [
+                6,
+                1,
+                7
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 6,
+        "fields": {
+            "title": "Математика. Геометрия",
+            "slug": "matematika-geometriya",
+            "image": "books_images/math_10-11.jpg",
+            "created": "2024-05-24T09:01:51.426Z",
+            "url": "https://drive.google.com/file/d/1f82gTu85T0TVmfq657vNldb6ixrTZGP3/view?usp=sharing",
+            "author": [
+                6,
+                1,
+                7
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 7,
+        "fields": {
+            "title": "Сборник задач по математике для Втузов, 1 часть",
+            "slug": "sbornik-zadach-po-matematike-dlya-vtuzov-1-chast",
+            "image": "books_images/math_pL9WMCg.jpg",
+            "created": "2024-05-24T09:13:48.290Z",
+            "url": "https://drive.google.com/file/d/1JKmzQK9Y2Ewoved_pDTUSRmfweNkAz-g/view?usp=sharing",
+            "author": [
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 8,
+        "fields": {
+            "title": "Сборник задач по математике для ВТУЗОВ 2 часть",
+            "slug": "sbornik-zadach-po-matematike-dlya-vtuzov-2-chast",
+            "image": "books_images/1001722060.jpg",
+            "created": "2024-05-24T09:16:39.500Z",
+            "url": "https://drive.google.com/file/d/1cYKiQaXLIQdt7XennG4zNWVNdnZKzqRW/view?usp=sharing",
+            "author": [
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 9,
+        "fields": {
+            "title": "Конструирование Программного обеспечения",
+            "slug": "konstruirovanie-programmnogo-obespecheniya",
+            "image": "books_images/Po_06YEE7n.jpg",
+            "created": "2024-05-24T09:21:49.261Z",
+            "url": "https://vk.cc/cx5kFx",
+            "author": [
+                3
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 10,
+        "fields": {
+            "title": "Технология параллельного программирования",
+            "slug": "tehnologiya-parallelnogo-programmirovaniya",
+            "image": "books_images/proga_Fxy3kCx.jpg",
+            "created": "2024-05-24T09:25:49.117Z",
+            "url": "https://drive.google.com/file/d/1P1lEZJQTq9FWEyhd8FF-wuibaFGVODr8/view?usp=sharing",
+            "author": [
+                9,
+                10
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "book.book",
+        "pk": 1,
+        "fields": {
+            "title": "Основы информационных технологий",
+            "slug": "osnovy-informacionnyh-tehnologij",
+            "image": "books_images/inform_q4Dkqs4.webp",
+            "created": "2024-05-24T09:57:57.423Z",
+            "url": "https://vk.cc/cx5kFx",
+            "author": [
+                3,
+                8
+            ],
+            "likes": []
+        }
+    }
+]
