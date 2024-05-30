@@ -49,15 +49,11 @@ def feedback(request):
     }
 
     return render(request, 'feedback.html', context)
-    
+
+
 def book_detail(request, book):
     book = get_object_or_404(Book, 
                             slug = book)
-    return render(request, "book/bookProfile.html", {"book": book})
-
-
-def book_detail_view(request, pk):
-    book = get_object_or_404(Book, pk=pk)
     user_liked = book.like_set.filter(id=request.user.id).exists() if request.user.is_authenticated else False
 
     if book.likes.filter(id=request.user.id).exists():
@@ -69,28 +65,11 @@ def book_detail_view(request, pk):
     context = {
         'book': book,
         'user_liked': user_liked,
+        "is_liked": is_liked,
+        "header_bool": 1
     }
-    return render(request, 'bookProfile.html', context)
 
-"""def is_liked(request):
-    user = request.user
-    if not user.is_authenticated:
-        return JsonResponse({'status': 'error', 'message': 'You must be logged in to like.'})
-    book_id = request.POST.get('id')
-    action = request.POST.get('action')
-
-    try:
-        book = Book.objects.get(id=book_id)
-        if user in book.like_set.all:
-            print(True)
-            return True
-        else:
-            return False        
-        #return book.like_set.filter(id=request.user.id).exists() if request.user.is_authenticated else False
-    except Book.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Book not found.'})
-    except Exception as e:
-        return JsonResponse({'status': 'error', 'message': str(e)})"""
+    return render(request, "book/bookProfile.html", context=context)
 
 @login_required
 @require_POST
@@ -100,14 +79,9 @@ def like_dislike(request):
     is_liked = None
     if not user.is_authenticated:
         return JsonResponse({'status': 'error', 'message': 'You must be logged in to like.'})
-    
-
 
     book_id = request.POST.get('id')
     action = request.POST.get('action')
-
-            
-
 
     try:
         book = Book.objects.get(id=book_id)
@@ -116,11 +90,9 @@ def like_dislike(request):
         if action == 'like':
             book.likes.add(request.user)
             is_liked = True
-            #Like.objects.get_or_create(user=user, book=book)
         else:
             book.likes.remove(request.user)
             is_liked = False
-            #Like.objects.filter(user=user, book=book).delete()
 
         total_likes = book.likes.count()
         return JsonResponse({'status': 'ok', 'total_likes': total_likes, "is_liked": True})
@@ -138,11 +110,12 @@ def book_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data["query"]
-            results = Book.objects.annotate(similarity=TrigramSimilarity("title", query),).filter(similarity__gt=0.1).order_by("-similarity")
-            cnt = results.count()
+            if query:
+                results = Book.objects.annotate(similarity=TrigramSimilarity("title", query),).filter(similarity__gt=0.1).order_by("-similarity")
+            else:
+                print(cnt)
     return render (request, "book/search.html",
                    {"form_s": form,
                     "query": query,
                     "results": results,
-                    "count": cnt,
                     "header_bool": 1,})

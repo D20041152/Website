@@ -6,14 +6,15 @@
 
 {% block content %}
     {% if query %}
-        {% if conut %}
-            <h4> Показываем результаты по запросу "{{  query  }}", {{ count }} результатов</h4>
+        {% if results.count %}
+            <h4> Показываем результаты по запросу "{{  query  }}", {{ results.count }} результатов</h4>
         {% else %}
             <h4> По запросу "{{  query  }}" ничего не нашлось. Похоже, у нас такого нет. </h4>
             <p>Но на всякий случай советуем проверить опечатки в запросе.</p>
         {% endif %}
         
-       
-        {% include "book/index.html" with books=results header_bool=0 %}
+    {% else %}
+        <h4>Похоже вы ничего не ввели</h4>
     {% endif %}
+    {% include "book/index.html" with books=results header_bool=0 %}
 {% endblock content %}
