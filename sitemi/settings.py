@@ -135,6 +135,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "book:index"
+LOGOUT_REDIRECT_URL = "book:index"
 LOGIN_URL = "login" #определяет куда направлять, если нужен "вход"
 LOGOUT_URL = "logout"
 

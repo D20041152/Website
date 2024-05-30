@@ -39,27 +39,6 @@
                         </form>
                     </li>
                 </ul>
-
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        {% if request.user.is_authenticated %}
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url "user:profile" %}">Мой профиль</a>
-                            </li>
-    
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url "user:login" %}">Вход</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url "user:registration" %}">Регистрация</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </ul>
-
             </div>
         </div>
     </nav>
@@ -72,8 +51,9 @@
         <div class="col-md-5 mx-auto mt-4">
             <div class=" bg-white p-4 mb-4 mx-2 rounded shadow-lg">
                 <h3 class="text-center mb-4">Профиль пользователя</h3>
-                <form>
-                    <div class="row">
+                <div class="row">
+                    <form>
+                    
                         <div class="col-md-12 mb-3 text-center">
                             <img src="{% static "deps/images/baseavatar.jpg"%}"
                                 alt="Аватар пользователя" class="img-fluid rounded-circle"
@@ -102,9 +82,21 @@
                                 placeholder="Введите ваш email *youremail@example.com" value="{{user.email}}"
                                 required>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-dark">Сохранить</button>
-                </form>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto mb-3 mb-lg-1" style="display:inline;" >
+                        <li class="nav-item" style="float: left;margin-left: 12px">
+                            <button type="submit" class="btn btn-dark" style="display:inline;">Сохранить</button>
+                        </li>   
+
+                        <li class="nav-item" style="float: right;font-size: 20px;">
+                            <form action={% url "users:logout" %}>
+                                <button type="submit" class="btn btn-light badge border bg-danger p-2">Выйти</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                
             </div>
         </div>
     </section>

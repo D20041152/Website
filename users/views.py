@@ -49,4 +49,4 @@ def profile(request):
 def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
-    return redirect(reverse('main:index'))
+    return redirect(reverse('book:index'))
