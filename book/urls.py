@@ -6,10 +6,11 @@ app_name="book"
 
 urlpatterns = [
     path("", views.library, name="index"),
+    path("search/", views.book_search, name="book_search"),
     path("feedback", views.feedback, name="feedback"),
     path("<slug:book>/", views.book_detail, name="book_detail"),
     path('like_dislike', views.like_dislike, name='like_dislike'),
-    path('<int:pk>/', views.book_detail_view, name='book_detail'),
+    path('<int:pk>/', views.book_detail_view, name='book_detail')
 ]
 
 

@@ -40,7 +40,8 @@ def profile(request):
     context = {
         "title": "Home - Кабинет",
         "form": form,
-        "user": user
+        "user": user,
+        "header_bool": 1,
     }
     return render(request, "users/profile.html", context)
 

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import UserForm
+from .forms import UserForm, SearchForm
 from .models import Book, Like
 import requests
 from django.views.decorators.csrf import csrf_exempt
@@ -9,6 +9,8 @@ import json
 from users.models import User
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import TrigramSimilarity
 
 
 
@@ -17,7 +19,8 @@ def library(request):
     
     context = {
         "title": "MIET books",
-        "books": books
+        "books": books,
+        "header_bool": 1
     }
 
     return render(request, "book/index.html", context=context)
@@ -42,6 +45,7 @@ def feedback(request):
     context = {
         "title": "Home - Авторизация",
         "form": form,
+        "header_bool": 1
     }
 
     return render(request, 'feedback.html', context)
@@ -49,7 +53,7 @@ def feedback(request):
 def book_detail(request, book):
     book = get_object_or_404(Book, 
                             slug = book)
-    return render(request, "book/bookProfile.html", {"book": book})
+    return render(request, "book/bookProfile.html", {"book": book, "header_bool": 1})
 
 
 def book_detail_view(request, pk):
@@ -58,28 +62,10 @@ def book_detail_view(request, pk):
     context = {
         'book': book,
         'user_liked': user_liked,
+        "header_bool": 1
     }
     return render(request, 'bookProfile.html', context)
 
-"""def is_liked(request):
-    user = request.user
-    if not user.is_authenticated:
-        return JsonResponse({'status': 'error', 'message': 'You must be logged in to like.'})
-    book_id = request.POST.get('id')
-    action = request.POST.get('action')
-
-    try:
-        book = Book.objects.get(id=book_id)
-        if user in book.like_set.all:
-            print(True)
-            return True
-        else:
-            return False        
-        #return book.like_set.filter(id=request.user.id).exists() if request.user.is_authenticated else False
-    except Book.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Book not found.'})
-    except Exception as e:
-        return JsonResponse({'status': 'error', 'message': str(e)})"""
 
 @login_required
 @require_POST
@@ -96,8 +82,6 @@ def like_dislike(request):
     action = request.POST.get('action')
 
             
-
-
     try:
         book = Book.objects.get(id=book_id)
 
@@ -116,3 +100,21 @@ def like_dislike(request):
         return JsonResponse({'status': 'error', 'message': 'Book not found.'})
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)})
+    
+
+def book_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if "query" in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data["query"]
+            results = Book.objects.annotate(similarity=TrigramSimilarity("title", query),).filter(similarity__gt=0.1).order_by("-similarity")
+            cnt = results.count()
+    return render (request, "book/search.html",
+                   {"form_s": form,
+                    "query": query,
+                    "results": results,
+                    "count": cnt,
+                    "header_bool": 1,})

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load author_tags %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+    {% if query %}
+        {% if conut %}
+            <h4> Показываем результаты по запросу "{{  query  }}", {{ count }} результатов</h4>
+        {% else %}
+            <h4> По запросу "{{  query  }}" ничего не нашлось. Похоже, у нас такого нет. </h4>
+            <p>Но на всякий случай советуем проверить опечатки в запросе.</p>
+        {% endif %}
+        
+       
+        {% include "book/index.html" with books=results header_bool=0 %}
+    {% endif %}
+{% endblock content %}
