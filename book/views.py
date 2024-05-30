@@ -53,26 +53,51 @@ def feedback(request):
 def book_detail(request, book):
     book = get_object_or_404(Book, 
                             slug = book)
-    return render(request, "book/bookProfile.html", {"book": book, "header_bool": 1})
+    return render(request, "book/bookProfile.html", {"book": book})
 
 
 def book_detail_view(request, pk):
     book = get_object_or_404(Book, pk=pk)
     user_liked = book.like_set.filter(id=request.user.id).exists() if request.user.is_authenticated else False
+
+    if book.likes.filter(id=request.user.id).exists():
+        is_liked = True
+
+    else:
+        is_liked = False
+
     context = {
         'book': book,
         'user_liked': user_liked,
-        "header_bool": 1
     }
     return render(request, 'bookProfile.html', context)
 
+"""def is_liked(request):
+    user = request.user
+    if not user.is_authenticated:
+        return JsonResponse({'status': 'error', 'message': 'You must be logged in to like.'})
+    book_id = request.POST.get('id')
+    action = request.POST.get('action')
+
+    try:
+        book = Book.objects.get(id=book_id)
+        if user in book.like_set.all:
+            print(True)
+            return True
+        else:
+            return False        
+        #return book.like_set.filter(id=request.user.id).exists() if request.user.is_authenticated else False
+    except Book.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Book not found.'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})"""
 
 @login_required
 @require_POST
 @csrf_exempt
 def like_dislike(request):
     user = request.user
-    is_liked = False
+    is_liked = None
     if not user.is_authenticated:
         return JsonResponse({'status': 'error', 'message': 'You must be logged in to like.'})
     
@@ -82,20 +107,23 @@ def like_dislike(request):
     action = request.POST.get('action')
 
             
+
+
     try:
         book = Book.objects.get(id=book_id)
 
-        if book.likes.filter(id=user.id).exists():
-            is_liked = True
+
         if action == 'like':
             book.likes.add(request.user)
+            is_liked = True
             #Like.objects.get_or_create(user=user, book=book)
         else:
             book.likes.remove(request.user)
+            is_liked = False
             #Like.objects.filter(user=user, book=book).delete()
 
         total_likes = book.likes.count()
-        return JsonResponse({'status': 'ok', 'total_likes': total_likes})
+        return JsonResponse({'status': 'ok', 'total_likes': total_likes, "is_liked": True})
     except Book.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Book not found.'})
     except Exception as e:
